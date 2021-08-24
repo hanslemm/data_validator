@@ -93,6 +93,7 @@ def main():
 
     # Creates a df comparing OLD column and NEW column
     for index in new.loc[~new.index.isin(key_errors)].sample(n=100).index.to_list():
+        series['Key'] = index
         for col in check_cols:
             series[f"{col} [OLD]"] = old.at[index, col]
             series[f"{col} [NEW]"] = new.at[index, col]
