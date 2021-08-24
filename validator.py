@@ -11,6 +11,8 @@ pd.options.display.max_columns = 100
 PATH_OLD = "inputs/old.csv"
 PATH_NEW = "inputs/new.csv"
 
+DIR_NAME = "outputs"
+
 # File size limit in bytes
 SIZE_LIMIT = 3_000_000_000
 
@@ -29,6 +31,11 @@ def main():
     """
     Main routine.
     """
+    # Create target directory if don't exist
+    if not os.path.exists(DIR_NAME):
+        os.mkdir(DIR_NAME)
+
+    # Open files as Pandas DataFrames
     old = pd.read_csv(PATH_OLD)
     new = pd.read_csv(PATH_NEW)
 
@@ -106,8 +113,9 @@ def main():
 
     # Outputs
     print("### Saving similarity table and divergent data sample #######")
-    comparison.to_csv("output/comparison.csv")
-    check_cols_df.to_csv("output/divergent_data_sample.csv")
+    comparison.to_csv(f"{DIR_NAME}/comparison.csv")
+    check_cols_df.to_csv(f"{DIR_NAME}/divergent_data_sample.csv")
+    print("### Saved! ##################################################")
 
 
 if over_limit() is True:
