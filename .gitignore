@@ -1,4 +1,5 @@
 /.DS_Store
-/inputs
-/outputs
+/data_validator/inputs
+/data_validator/outputs
 /venv
+.venv
